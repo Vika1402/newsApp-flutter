@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'detail_view.dart';
+
 class NewsConatiner extends StatelessWidget {
   String imgUrl;
   String newsHead;
@@ -35,7 +37,7 @@ class NewsConatiner extends StatelessWidget {
               children: [
                 SizedBox(height: 20,),
                 Text(
-                  newsHead,
+                  newsHead.length>70? "${newsHead.substring(0,70)}":newsHead,
                   style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 20,),
@@ -43,24 +45,24 @@ class NewsConatiner extends StatelessWidget {
                   newsDescription,
                   style: TextStyle(fontSize: 17),
                 ),
-              ],
-            ),
+              ],),
           ),
-
           Spacer(),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
-
             children: [
-             Padding(padding: EdgeInsets.symmetric(horizontal: 10,)),
-              ElevatedButton(
-                  onPressed: () {
-                    print('going to$newsUrl');
-                  },
-                  child: Text("Read more")),
-            ],
-          ),
-          SizedBox(height: 20 ,)
+             Padding(padding: EdgeInsets.symmetric(horizontal: 10,),
+      child: ElevatedButton(
+        onPressed: (){
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> DeatilView(newsUrl: newsUrl,)));
+
+        }, child:Text("read more"),
+      ),
+
+    ),
+    ],
+    ),
+          SizedBox(height: 20,),
         ],
       ),
     );
